@@ -1,0 +1,6 @@
+nom,prenom,genre,adresse,code_postal,telephone,mail,heure_arrivee,heure_depart,dort,allergie1,allergie2,musique,plat,commentaire
+Eponge,Bob,Homme,Ananas,42000,0604050309,bob@gmail.com,16:00,08:00,Oui,pas d'allergie,,We're no gonna take it - Twisted sisters,Cookie ,Je suis super content !
+L'étoile de mer,Patrick,Homme,Caillou,42000,,pat@gmail.com,16:00,08:00,Oui,pas d'allergie,,Où sont les femmes - Patrick Juvet,Biscuit ,
+Tentacules,Carlo,Homme,Mohai,42000,0240362348,clarinette@gmail.com,20:00,20:30,Non,œuf,Bob,Unchained Melody - Christian morin,,
+Krabs,Eugene H,Homme,Crusty Krabs,42110,0240405189,captain_k@gmail.com,16:00,08:00,Oui,autre,Crabe,Money - Pink Floyd,,
+Gary,,Homme,Ananas,42000,,gary@nobel.price.com,20:00,23:00,Non,acariens,,Ready to take a chance again - Barry Manilow,,
