@@ -1,0 +1,22 @@
+body{
+    font-family: Calibri;
+    font-size: 16px;
+    color:#fff;
+}
+
+label{
+    display:inline;
+    margin: 10px;
+}
+
+.bouton{
+    padding: 10px;
+}
+.formulaire {
+    background: rgba(25, 50, 109, 0.5);
+    border: 2px solid;
+    border-color:#19326d;
+    padding: 10px;
+    width: 50%;
+}
+
