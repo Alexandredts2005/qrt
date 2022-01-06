@@ -1,0 +1,10 @@
+body{
+background: lightblue;
+}
+
+.show{
+color: red;
+}
+.hidden{
+color: lightblue;
+}
