@@ -1,0 +1,31 @@
+graph {
+	0 [label=11]
+	1 [label=8]
+	0 -- 1
+	2 [label=14]
+	0 -- 2
+	3 [label=13]
+	2 -- 3
+	4 [label=15]
+	2 -- 4
+	5 [style=invis]
+	4 -- 5 [style=invis weight=20]
+	6 [style=invis]
+	4 -- 6 [style=invis weight=20]
+	7 [style=invis]
+	3 -- 7 [style=invis weight=20]
+	8 [style=invis]
+	3 -- 8 [style=invis weight=20]
+	9 [label=5]
+	1 -- 9
+	10 [label=10]
+	1 -- 10
+	11 [style=invis]
+	10 -- 11 [style=invis weight=20]
+	12 [style=invis]
+	10 -- 12 [style=invis weight=20]
+	13 [style=invis]
+	9 -- 13 [style=invis weight=20]
+	14 [style=invis]
+	9 -- 14 [style=invis weight=20]
+}
