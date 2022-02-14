@@ -1,7 +1,6 @@
 # Cours de NSI
 *A Blanche de Castille*
 
-# Ceci est un test... !
 
 Vous trouverez des éléments de cours, des activités et des exercices pour la 1ère et la terminale.
 
