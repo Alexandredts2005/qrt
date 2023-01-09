@@ -1,7 +1,6 @@
-# Créé par lvannier, le 22/01/2022 en Python 3.4
+﻿# Créé par lvannier, le 22/01/2022 en Python 3.4
 from FILE import *
-from PILE import *
-import graphviz
+
 
 class Arbre_binaire_recherche:
     """
@@ -21,69 +20,58 @@ class Arbre_binaire_recherche:
         else:
             return False
 
-    def dessiner(self) -> None:
+
+    def get_valeur(self):
         """
-        Représente l'arbre avec graphviz (https://graphviz.org/)
-            $ sudo apt update
-            $ sudo apt install graphviz
-            $ sudo python3 -m pip install graphviz
+        Accesseur de la valeur de l'arbre
         """
-        key = 0
-        pile = []
+        return self.valeur
 
-        g = graphviz.Graph(format="png")
-        g.node(str(key), str(self.valeur))
-        EMPILER(pile, (self, key))
 
-        while not EST_VIDE(pile):
-            enCours, enCours_key = DEPILER(pile)
-            if enCours.gauche:
-                key += 1
-                g.node(str(key), str(enCours.gauche.valeur))
-                EMPILER(pile, (enCours.gauche, key))
-                g.edge(str(enCours_key), str(key))
-            else:
-                key += 1
-                g.node(str(key), style='invis')
-                g.edge(str(enCours_key), str(key), style="invis", weight="20")
-            if enCours.droit:
-                key += 1
-                g.node(str(key), str(enCours.droit.valeur))
-                EMPILER(pile, (enCours.droit, key))
-                g.edge(str(enCours_key), str(key))
-            else:
-                key += 1
-                g.node(str(key), style='invis')
-                g.edge(str(enCours_key), str(key), style="invis", weight="20")
+    def get_gauche(self):
+        """
+        Accesseur du fils gauche
+        """
+        return self.gauche
 
-        g.render(view=True)
-
-        return None
-
+    def get_droit(self):
+        """
+        Accesseur du fils droit
+        """
+        return self.droit
 
     def set_valeur(self, valeur):
-        """ Mutateur de la valeur du noeud """
+        """
+        Mutateur de la valeur du noeud
+        """
         self.valeur = valeur
 
+
     def set_gauche(self, arbre):
-        """ Mutateur du fils gauche """
+        """
+        Mutateur du fils gauche
+        """
         self.gauche = arbre
 
     def set_droit(self, arbre):
-        """ Mutateur du fils droit """
+        """
+        Mutateur du fils droit
+        """
         self.droit = arbre
 
     def taille(self):
-        """ Taille de l'arbre"""
         if self.est_vide():
             return 0
+
         if self.gauche == None and self.droit == None:
             return 1
-        elif self.gauche == None: 
+
+        elif self.gauche == None:
             return 1 + self.droit.taille()
+
         else:
             return 1 + self.gauche.taille()
-        
+
     def taillebis(self):
         if self == None:
             return 0
@@ -91,22 +79,24 @@ class Arbre_binaire_recherche:
             return 1 + Arbre_binaire_recherche(self.gauche).taillebis()+Arbre_binaire_recherche(self.droit).taillebis()
 
     def hauteur(self):
-        """ Hauteur de l'arbre"""
         if self.est_vide():
             return 0
+
         if self.gauche == None and self.droit == None:
             return 1
+
         elif self.gauche == None:
             return 1 + self.droit.hauteur()
+
         elif self.droit == None:
             return 1 + self.gauche.hauteur()
         else:
-            return 1 + max(self.gauche.hauteur(), self.droit.hauteur())
+            return 1 + max(self.gauche.hauteur() , self.droit.hauteur())
 
 
     def parcours_largeur(self):
         f = CREER_FILE_VIDE()
-        ENFILER(f, self)
+        ENFILER(f,self)
         parcours = []
         while not EST_VIDE(f):
             noeud_en_cours = DEFILER(f)
@@ -136,55 +126,82 @@ class Arbre_binaire_recherche:
             parcours.append(self.droit.parcours_postfixe())
         parcours.append(self.valeur)
         return parcours
-    
+
     def parcours_infixe(self):
+        parcours = []
+        if self.gauche != None:
+            parcours.append(self.gauche.parcours_prefixe())
+        parcours.append(self.valeur)
+        if self.droit != None:
+            parcours.append(self.droit.parcours_prefixe())
+        return parcours
 
-        ## A COMPLETER ##
-        
-        
-        return 
+    def affiche(self):
+        """permet d'afficher un arbre"""
 
+        if self.gauche == None and self.droit == None:
+            return self.valeur
+        elif self.gauche == None:
+            return [self.valeur,self.droit.affiche()]
+        elif self.droit == None:
+            return [self.valeur, self.gauche.affiche()]
+        else:
+            return [self.valeur,self.gauche.affiche(),self.droit.affiche()]
 
     def recherche(self,x):
-        
-        ## A COMPLETER ##
-            
-        return 
-        
+        if self.est_vide():
+            return False
+        else:
+            if self.valeur == x:
+                return True
+            elif self.valeur < x and self.gauche != None:
+                return self.gauche.recherche(x)
+            elif self.valeur > x and self.droit != None:
+                return self.droit.recherche(x)
+
+            return False
+
     def ajout(self,x):
-        
-        ## A COMPLETER ##
-        
-        return
-        
+        if self.est_vide():
+            self.valeur = x
+        else:
+            if x <= self.valeur:
+                if self.gauche != None:
+                    self.gauche.ajout(x)
+                else:
+                    self.gauche = Arbre_binaire_recherche(None,x,None)
+            else:
+                if self.droit != None:
+                    self.droit.ajout(x)
+                else:
+                    self.droit = Arbre_binaire_recherche(None,x,None)
+
+
     def minimum(self):
-       
-       
-       ## A COMPLETER ##
-        
-       return 
-        
+
+        if self.gauche == None:
+                return self.valeur
+        else:
+                return self.gauche.minimum()
+
+
+
 
 
 a = Arbre_binaire_recherche()
 b = Arbre_binaire_recherche(None, 3, )
 c = Arbre_binaire_recherche(None, 2, )
-d = Arbre_binaire_recherche (c , 1, b)
+d = Arbre_binaire_recherche (c , 1 , b)
 f4 = Arbre_binaire_recherche(None, 4, None)
 f5 = Arbre_binaire_recherche(None, 5, None)
 f6 = Arbre_binaire_recherche(None, 6, None)
-N2 = Arbre_binaire_recherche(f4, 2, f5)
+N2 = Arbre_binaire_recherche(f4, 2 , f5)
 N3 = Arbre_binaire_recherche(None, 3, f6)
 e = Arbre_binaire_recherche(N2 , 1, N3)
 
-f = Arbre_binaire_recherche(Arbre_binaire_recherche(Arbre_binaire_recherche(None, 5, None),8,Arbre_binaire_recherche(None,10, None)),11, Arbre_binaire_recherche(Arbre_binaire_recherche(None,13,None),14,Arbre_binaire_recherche(None,15,None)))
+f = Arbre_binaire_recherche(Arbre_binaire_recherche(Arbre_binaire_recherche(None,5,None),8,Arbre_binaire_recherche(None,10, None)),11, Arbre_binaire_recherche(Arbre_binaire_recherche(None,13,None),14,Arbre_binaire_recherche(None,15,None)))
 
-
-f.dessiner()
-
-#print(e.minimum())
-#print(" Parcours infixe : ", f.parcours_infixe())
-#f.ajout(12)
-#f.dessiner()
-
+print(e.parcours_postfixe())
+print(e.parcours_prefixe())
+print(e.parcours_infixe())
 
